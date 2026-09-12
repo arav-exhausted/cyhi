@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ScrollSafe</title>
+
+    <link
+        rel="stylesheet"
+        href="popup.css"
+    >
+</head>
+<body>
+    <div class="app">
+
+        <!-- HEADER -->
+
+        <header class="header">
+            
+            <div class="brand">
+                
+                <div class="brand-icon">
+                    S
+                </div>
+
+                <div>
+                    <div class="brand-name">
+                        ScrollSafe
+                    </div>
+
+                    <div class="brand-tagline">
+                        Your feed - Your rules.
+                    </div>
+                </div>
+
+            </div>
+
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="protectionToggle"
+                >
+
+                <span class="slider"></span>
+
+            </label>
+
+        </header>
+
+
+        <!-- WEBSITE -->
+
+        <div class="website-box">
+            <div class="close-site">
+            </div>
+            <span id="siteName">
+                Detecting website...
+            </span>
+        </div>
+
+
+        <!-- STATUS -->
+        <div
+            class="status"
+            id="status"
+        >
+            <span class="status-dot"></span>
+            <span id="statusText">
+                ScrollSafe Activated
+            </span>
+        </div>
+        <!-- TABS -->
+
+        <div class="tabs">
+
+            <button
+                class="tab active"
+                data-tab="protect"
+            >
+                Protect
+            </button>
+
+            <!-- <button
+                class="tab"
+                data-tab="feed"
+            >
+                Feed
+            </button> -->
+
+            <!-- <button
+                class="tab"
+                data-tab="insights"
+            >
+                Insights
+            </button> -->
+
+        </div>
+
+
+        <!-- =========================
+             PROTECT
+        ========================== -->
+
+        <section
+            class="panel active"
+            id="protectPanel"
+        >
+
+            <div class="section-title">
+
+                <span>
+                    CONTENT FILTER
+                </span>
+
+                <span>
+                    YOUR RULES
+                </span>
+
+            </div>
+
+
+            <!-- HARMFUL -->
+
+            <div class="filter-card">
+
+                <div class="filter-icon danger">
+                    !
+                </div>
+
+                <div class="filter-info">
+
+                    <div class="filter-name">
+                        Harmful content
+                    </div>
+
+                    <div class="filter-description">
+                        Threats & severe toxicity
+                    </div>
+
+                </div>
+
+                <select
+                    class="action-select"
+                    id="harmfulAction"
+                >
+
+                    <option value="blur">
+                        BLUR
+                    </option>
+
+                    <option value="hide">
+                        HIDE
+                    </option>
+
+                    <option value="show">
+                        SHOW
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PERSONAL ATTACKS -->
+            <div class="filter-card">
+
+                <div class="filter-icon warning">
+                    ⚡
+                </div>
+
+                <div class="filter-info">
+
+                    <div class="filter-name">
+                        Personal attacks
+                    </div>
+
+                    <div class="filter-description">
+                        Insults & harassment
+                    </div>
+
+                </div>
+
+                <select
+                    class="action-select"
+                    id="attackAction"
+                >
+
+                    <option value="blur">
+                        BLUR
+                    </option>
+
+                    <option value="hide">
+                        HIDE
+                    </option>
+
+                    <option value="show">
+                        SHOW
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- RAGE BAIT -->
+
+            <div class="filter-card">
+
+                <div class="filter-icon blue">
+                    ⚡
+                </div>
+
+                <div class="filter-info">
+
+                    <div class="filter-name">
+                        Rage bait
+                    </div>
+
+                    <div class="filter-description">
+                        Provocative content
+                    </div>
+
+                </div>
+
+                <select
+                    class="action-select"
+                    id="rageAction"
+                >
+
+                    <option value="blur">
+                        BLUR
+                    </option>
+
+                    <option value="hide">
+                        HIDE
+                    </option>
+
+                    <option value="show">
+                        SHOW
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- NEGATIVE -->
+
+            <div class="filter-card">
+
+                <div class="filter-icon purple">
+                    ◉
+                </div>
+
+                <div class="filter-info">
+
+                    <div class="filter-name">
+                        Negative content
+                    </div>
+
+                    <div class="filter-description">
+                        Strong negative sentiment
+                    </div>
+
+                </div>
+
+                <select
+                    class="action-select"
+                    id="negativeAction"
+                >
+
+                    <option value="show">
+                        SHOW
+                    </option>
+
+                    <option value="blur">
+                        BLUR
+                    </option>
+
+                    <option value="hide">
+                        HIDE
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- SENSITIVITY -->
+
+            <div class="sensitivity-section">
+
+                <div class="sensitivity-header">
+
+                    <span>
+                        Detection sensitivity
+                    </span>
+
+                    <span
+                        id="sensitivityValue"
+                        class="orange"
+                    >
+                        70%
+                    </span>
+
+                </div>
+
+
+                <input
+                    type="range"
+                    id="sensitivity"
+                    min="0"
+                    max="100"
+                    value="70"
+                >
+
+
+                <div class="range-labels">
+
+                    <span>
+                        LOW
+                    </span>
+
+                    <span>
+                        HIGH
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- USER OVERRIDE -->
+
+            <div class="override-box">
+
+                <div>
+
+                    <div class="override-title">
+                        User override
+                    </div>
+
+                    <div class="override-description">
+                        You always have the final say.
+                    </div>
+
+                </div>
+
+                <div class="check">
+                    ✓
+                </div>
+
+            </div>
+
+
+            <div class="version">
+                ScrollSafe v1.0
+                <span>• Privacy-first</span>
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FEED
+        ========================== -->
+
+        <section
+            class="panel"
+            id="feedPanel"
+        >
+
+            <div class="feed-header">
+
+                <div class="big-number">
+                    <span id="contentCount">
+                        0
+                    </span>
+                </div>
+
+                <div>
+                    <div class="feed-title">
+                        Items analyzed
+                    </div>
+
+                    <div class="feed-subtitle">
+                        On this page
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="feed-stat">
+
+                <span>
+                    Protected
+                </span>
+
+                <strong id="protectedCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="feed-stat">
+
+                <span>
+                    Visible
+                </span>
+
+                <strong id="visibleCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="feed-stat">
+
+                <span>
+                    Hidden / blurred
+                </span>
+
+                <strong id="filteredCount">
+                    0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             INSIGHTS
+        ========================== -->
+
+        <section
+            class="panel"
+            id="insightsPanel"
+        >
+
+            <div class="insight-card">
+
+                <div class="insight-label">
+                    TODAY
+                </div>
+
+                <div class="insight-number">
+                    <span id="scrollMinutes">
+                        0
+                    </span>
+                    min
+                </div>
+
+                <div class="insight-description">
+                    Time spent on supported websites
+                </div>
+            </div>
+
+
+            <div class="mood-card">
+
+                <div class="mood-title">
+                    Your content exposure
+                </div>
+
+                <div class="mood-bar">
+
+                    <div
+                        class="mood-fill"
+                        id="moodFill"
+                    ></div>
+
+                </div>
+
+                <div class="mood-label">
+                    Waiting for model data
+                </div>
+
+            </div>
+
+
+            <div class="privacy-note">
+
+                <span>🔒</span>
+
+                <span>
+                    Mood insights are generated from
+                    content signals and stay under
+                    your control.
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <span>
+                ScrollSafe
+            </span>
+
+            <span>
+                User-controlled wellbeing
+            </span>
+
+        </footer>
+
+    </div>
+
+
+    <script src="popup.js"></script>
+
+</body>
+
+</html>

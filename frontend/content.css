@@ -1,0 +1,177 @@
+/* =========================
+   SCROLLSHIELD WORD-LEVEL FILTER
+   ========================= */
+
+/*
+   DO NOT use .scrollshield-blur on an article,
+   paragraph, heading or line.
+
+   The extension now applies blur ONLY to:
+   .scrollshield-word-blur
+*/
+
+/* Toxic word only */
+.scrollshield-toxic-word {
+    display: inline !important;
+    cursor: pointer !important;
+    border-radius: 3px !important;
+    transition: filter 0.2s ease, opacity 0.2s ease !important;
+}
+
+/* Blur ONLY the toxic word */
+.scrollshield-word-blur {
+    filter: blur(6px) !important;
+    user-select: none !important;
+}
+
+/* Optional: hide ONLY the toxic word */
+.scrollshield-word-hidden {
+    display: none !important;
+}
+
+/* Hover to temporarily read a blurred word */
+.scrollshield-word-blur:hover {
+    filter: blur(0) !important;
+}
+
+/*
+   Keep these classes for compatibility with older versions.
+   They are NOT used by the new content.js.
+*/
+.scrollshield-blur {
+    filter: none !important;
+}
+
+.scrollshield-hidden {
+    display: initial !important;
+}
+
+
+/* =========================
+   WARNING BORDER
+   ========================= */
+
+.scrollshield-flagged {
+    outline:
+        2px solid rgba(
+            255,
+            99,
+            59,
+            0.65
+        ) !important;
+
+    outline-offset: 3px !important;
+}
+
+
+/* =========================
+   SMALL LABEL
+   ========================= */
+
+.scrollshield-label {
+    position: fixed;
+
+    z-index: 2147483647;
+
+    right: 18px;
+
+    bottom: 18px;
+
+    padding: 8px 12px;
+
+    background: #071014;
+
+    color: #ff633b;
+
+    border:
+        1px solid #ff633b;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.4px;
+
+    box-shadow:
+        0 5px 25px
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
+}
+
+/* =========================
+   TOXIC WORD REVEAL PERMISSION
+   ========================= */
+
+/* Never reveal automatically just because the cursor is over the word. */
+.scrollshield-word-blur:hover {
+    filter: blur(6px) !important;
+}
+
+.scrollshield-word-revealed {
+    filter: blur(0) !important;
+    user-select: text !important;
+}
+
+.scrollshield-reveal-box {
+    position: fixed !important;
+    z-index: 2147483647 !important;
+    width: 245px !important;
+    padding: 14px !important;
+    border: 1px solid rgba(255, 99, 59, 0.7) !important;
+    border-radius: 10px !important;
+    background: #071014 !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45) !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+}
+
+.scrollshield-reveal-title {
+    font-weight: 700 !important;
+    margin-bottom: 7px !important;
+}
+
+.scrollshield-reveal-score {
+    margin-bottom: 7px !important;
+}
+
+.scrollshield-reveal-score strong {
+    color: #ff633b !important;
+}
+
+.scrollshield-reveal-question {
+    margin-bottom: 12px !important;
+}
+
+.scrollshield-reveal-actions {
+    display: flex !important;
+    gap: 7px !important;
+}
+
+.scrollshield-reveal-actions button {
+    border: 0 !important;
+    border-radius: 6px !important;
+    padding: 7px 9px !important;
+    cursor: pointer !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+}
+
+.scrollshield-reveal-yes {
+    background: #ff633b !important;
+    color: #ffffff !important;
+}
+
+.scrollshield-reveal-no {
+    background: #273238 !important;
+    color: #ffffff !important;
+}

@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "ScrollSafe",
+  "version": "1.0.0",
+  "description": "A user-controlled wellbeing layer for online communities.",
+
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "action": {
+    "default_title": "ScrollSafe",
+    "default_popup": "popup.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
