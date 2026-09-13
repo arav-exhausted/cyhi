@@ -1,19 +1,17 @@
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-
-MODEL_NAME = "s-nlp/roberta_toxicity_classifier"
-
+MODEL_PATH = "../model3"
 
 print("Loading tokenizer...")
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
 
 print("Loading model...")
-model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)
+model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)
 
 model.eval()
 
-print("Model loaded successfully!")
+print("Model 3 loaded successfully!")
 
 
 def predict_toxicity(text):
@@ -41,10 +39,15 @@ def predict_toxicity(text):
     }
 
 
-from pathlib import Path
-MODEL_DIR = Path(__file__).resolve().parent.parent / "model3"
+texts = [
+    "I really enjoyed this video.",
+    "You are an idiot.",
+    "Thank you for your help.",
+    "I hate you.",
+    "I completely disagree with your opinion.",
+    "I fucking love you.",
+    "fuck you"
+]
 
-model.save_pretrained(MODEL_DIR)
-tokenizer.save_pretrained(MODEL_DIR)
-
-print(f"Model and tokenizer saved to: {MODEL_DIR}")
+for text in texts:
+    print("\n", predict_toxicity(text))
