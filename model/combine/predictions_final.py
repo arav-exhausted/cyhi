@@ -1,26 +1,34 @@
-
 import joblib
 import torch
+from pathlib import Path
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
+
+
+# =========================================================
+# PATHS
+# =========================================================
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+MODEL1_PATH = BASE_DIR / "model1"
+MODEL3_PATH = BASE_DIR / "model3"
 
 
 # =========================================================
 # MODEL 1
 # =========================================================
 
-MODEL1_PATH = "model/model1"
-
 vectorizer = joblib.load(
-    f"{MODEL1_PATH}/tfidf_vectorizer.joblib"
+    MODEL1_PATH / "tfidf_vectorizer.joblib"
 )
 
 models = {
-    "toxic": joblib.load(f"{MODEL1_PATH}/toxic.pkl"),
-    "severe_toxicity": joblib.load(f"{MODEL1_PATH}/severe_toxic.pkl"),
-    "obscene": joblib.load(f"{MODEL1_PATH}/obscene.pkl"),
-    "threat": joblib.load(f"{MODEL1_PATH}/threat.pkl"),
-    "insult": joblib.load(f"{MODEL1_PATH}/insult.pkl"),
-    "identity_hate": joblib.load(f"{MODEL1_PATH}/identity_hate.pkl"),
+    "toxic": joblib.load(MODEL1_PATH / "toxic.pkl"),
+    "severe_toxicity": joblib.load(MODEL1_PATH / "severe_toxic.pkl"),
+    "obscene": joblib.load(MODEL1_PATH / "obscene.pkl"),
+    "threat": joblib.load(MODEL1_PATH / "threat.pkl"),
+    "insult": joblib.load(MODEL1_PATH / "insult.pkl"),
+    "identity_hate": joblib.load(MODEL1_PATH / "identity_hate.pkl"),
 }
 
 
@@ -42,9 +50,9 @@ def predict_model1(text):
 # MODEL 3
 # =========================================================
 
-MODEL3_PATH = "model/model3"
-
-tokenizer = AutoTokenizer.from_pretrained(MODEL3_PATH)
+tokenizer = AutoTokenizer.from_pretrained(
+    MODEL3_PATH
+)
 
 model3 = AutoModelForSequenceClassification.from_pretrained(
     MODEL3_PATH
@@ -118,4 +126,3 @@ if __name__ == "__main__":
 
     print("\nFINAL TOXICITY PROBABILITY:")
     print(probability)
-
