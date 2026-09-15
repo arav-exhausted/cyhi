@@ -1,3 +1,4 @@
+
 import joblib
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
@@ -79,29 +80,30 @@ def predict_model3(text):
 
 
 # =========================================================
-# FINAL PREDICTION
+# FINAL PROBABILITY
 # =========================================================
 
 def predict(text):
 
+    # Model 1
     model1_result = predict_model1(text)
-    model3_result = predict_model3(text)
 
-    model1_score = sum(model1_result.values()) / len(model1_result)
+    model1_score = (
+        sum(model1_result.values())
+        / len(model1_result)
+    )
+
+    # Model 3
+    model3_result = predict_model3(text)
 
     model3_score = model3_result["toxic"]
 
-    # Temporary combination
-    final_score = (model1_score + model3_score) / 2
+    # Combine both models
+    final_probability = (
+        model1_score + model3_score
+    ) / 2
 
-    return {
-        "final_toxicity": final_score,
-        "is_toxic": final_score >= 0.5,
-
-        # "model1": model1_result,
-
-        # "model3": model3_result
-    }
+    return final_probability
 
 
 # =========================================================
@@ -110,9 +112,10 @@ def predict(text):
 
 if __name__ == "__main__":
 
-    text = "He is such a motherfucker and so toxic that we have to beat him."
+    text = "You are very Fuck good person."
 
-    result = predict(text)
+    probability = predict(text)
 
-    print("\nFINAL RESULT:")
-    print(result)
+    print("\nFINAL TOXICITY PROBABILITY:")
+    print(probability)
+
